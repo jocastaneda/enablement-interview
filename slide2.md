@@ -1,19 +1,37 @@
 layout: true
-class: compact
+class: middle, compact
 background-image: url(../../assets/images/backgrounds/HashiCorp-Content-bkg.png)
 background-size: cover
 name: slide2
 
-## Slide 2
+## Declaring Output Values
+???
+Explain uses
+* child module to expose attributes to parent
+* root module to print values to CLI after `terraform apply`
+* remote state can be accessed by other configurations
+* can't access without knowing how to declare and here is how...
 
-Here's an example of incremental text (hit left to progress):
-
-- List Item 1
 --
 
-- List Item 2
---
+```terraform
+output "instance_ip_addr" {
+  value = aws_instance.server.private_ip
+  description = "The private IP address of the main server instance."
+}
+```
 
-- List Item 3
+Optional values
+- `description` - to best describe the purpose
+- `sensitive` - to hide messages from `terraform plan` and `terraform apply`
+- `depends_on` - to be used as last resort and always include comment
 
 ???
+
+Explain: what is on screen, what it means, how it's used, and what each part does. 
+
+Could ask audience who is familiar with what programming languages and make it relate
+
+"think of this as a sort of JSON object, a Python dictionary, or C structure in that we declare it with opening and closing brackets, and inside are key value pairs. Very much like an associative array"
+
+---
